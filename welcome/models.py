@@ -16,12 +16,12 @@ ITEM_LIST = (u'001---佛号或咒语---',u'002 阿弥陀佛',u'005 百字明',u'
 
 
 def make_choice(i):
-    return (i, i)
+    return (i.encode('utf8'), i.encode('utf8'))
 
 
 class SignInfo(models.Model):
     ITEM_CHOICE = map(make_choice, ITEM_LIST)
-    name = models.CharField(max_length=100, verbose_name=u'昵称')
-    date = models.DateField(verbose_name=u'日期')
-    item = models.CharField(choices = ITEM_CHOICE, verbose_name=u'经咒', max_length=100)
-    number = models.IntegerField(verbose_name=u'数量')
+    name = models.CharField(max_length=100, verbose_name=u'昵称'.encode('utf8'))
+    date = models.DateField(verbose_name=u'日期'.encode('utf8'))
+    item = models.CharField(choices = ITEM_CHOICE, verbose_name=u'经咒'.encode('utf8'), max_length=100)
+    number = models.IntegerField(verbose_name=u'数量'.encode('utf8'))
