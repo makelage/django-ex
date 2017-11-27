@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.db import models
 
 # Create your models here.
@@ -20,7 +21,7 @@ def make_choice(i):
 
 class SignInfo(models.Model):
     ITEM_CHOICE = map(make_choice, ITEM_LIST)
-    name = models.CharField(max_length=100, help_text=u'昵称')
-    date = models.DateField(auto_now_add=True, help_text=u'日期')
-    item = models.CharField(choices = ITEM_CHOICE, help_text=u'经咒', max_length=100)
-    number = models.IntegerField(help_text=u'数量')
+    name = models.CharField(max_length=100, verbose_name=u'昵称')
+    date = models.DateField(verbose_name=u'日期')
+    item = models.CharField(choices = ITEM_CHOICE, verbose_name=u'经咒', max_length=100)
+    number = models.IntegerField(verbose_name=u'数量')
