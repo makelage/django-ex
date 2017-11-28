@@ -14,26 +14,18 @@ import traceback
 def index(request):
     # hostname = os.getenv('HOSTNAME', 'unknown')
     # PageView.objects.create(hostname=hostname)
-    path = os.path.abspath(__file__)
-    path = os.path.join(os.path.dirname(path),'..', 'exp.log')
-    of = file(path,'a')
-    try:
-        if request.method == 'GET':
-            form = forms.SignInfoForm()
-        else:
-            form = forms.SignInfoForm(request.POST)
-            if form.is_valid():
-                form.save()
-        of.write(form.as_p().encode('utf8'))
-        return render(request, 'welcome/index.html', {
-            'form': form,
-            'database': database.info(),
-        })
-    except:
-        traceback.print_exc(None, of)
-        raise
-    finally:
-        of.close()
+
+    if request.method == 'GET':
+        form = forms.SignInfoForm()
+    else:
+        form = forms.SignInfoForm(request.POST)
+        if form.is_valid():
+            form.save()
+    return render(request, 'welcome/index.html', {
+        'form': form,
+        'database': database.info(),
+    })
+
 
 
 def health(request):
