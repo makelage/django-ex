@@ -14,16 +14,19 @@ import traceback
 def index(request):
     # hostname = os.getenv('HOSTNAME', 'unknown')
     # PageView.objects.create(hostname=hostname)
-
+    comment = ''
     if request.method == 'GET':
         form = forms.SignInfoForm()
     else:
         form = forms.SignInfoForm(request.POST)
         if form.is_valid():
             form.save()
+            form = forms.SignInfoForm()
+            comment = '操作成功'
     return render(request, 'welcome/index.html', {
         'form': form,
         'database': database.info(),
+        'comment':comment
     })
 
 
