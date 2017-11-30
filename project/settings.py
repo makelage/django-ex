@@ -142,8 +142,10 @@ LOGGING = {
     'handlers': {
         'file': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(BASE_DIR, 'run.log'),
+            'maxBytes': 1024*1024*10,
+            'backupCount': 3
         },
     },
     'loggers': {
